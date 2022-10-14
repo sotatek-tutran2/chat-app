@@ -1,0 +1,14 @@
+.form {
+  width: 600px;
+}
+.nameFieldRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.formText {
+  color: white;
+  a {
+    color: #ccc;
+  }
+}

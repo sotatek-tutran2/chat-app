@@ -1,30 +1,90 @@
 import styles from "./index.module.scss";
-import { Button, InputContainer, InputField, InputLabel } from "../../styles";
+import {
+  Button,
+  InputContainer,
+  InputError,
+  InputField,
+  InputLabel,
+} from "../../styles";
 import { Link } from "react-router-dom";
-import React from "react";
+import { useForm } from "react-hook-form";
 
 const RegisterForm = () => {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (values: any) => {
+    console.log(values);
+  };
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
         <InputLabel htmlFor="email">E-mail</InputLabel>
-        <InputField id="email" type="email" />
+        <InputField
+          id="email"
+          type="email"
+          {...register("email", {
+            required: {
+              value: true,
+              message: "E-mail is required",
+            },
+          })}
+        />
+        {typeof errors?.email?.message === "string" && (
+          <InputError>{errors?.email.message}</InputError>
+        )}
       </InputContainer>
       <section className={styles.nameFieldRow}>
         <InputContainer>
           <InputLabel htmlFor="firstName">First Name</InputLabel>
-          <InputField id="firstName" />
+          <InputField
+            id="firstName"
+            {...register("firstName", {
+              required: {
+                value: true,
+                message: "First Name is required",
+              },
+            })}
+          />
+          {typeof errors?.firstName?.message === "string" && (
+            <InputError>{errors?.firstName.message}</InputError>
+          )}
         </InputContainer>
         <InputContainer>
           <InputLabel htmlFor="lastName">Last Name</InputLabel>
-          <InputField id="lastName" />
+          <InputField
+            id="lastName"
+            {...register("lastName", {
+              required: {
+                value: true,
+                message: "Last Name is required",
+              },
+            })}
+          />
+          {typeof errors?.lastName?.message === "string" && (
+            <InputError>{errors?.lastName.message}</InputError>
+          )}
         </InputContainer>
       </section>
       <InputContainer>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <InputField id="password" type="password" />
+        <InputField
+          id="password"
+          type="password"
+          {...register("password", {
+            required: {
+              value: true,
+              message: "Password is required",
+            },
+          })}
+        />
+        {typeof errors?.password?.message === "string" && (
+          <InputError>{errors?.password.message}</InputError>
+        )}
       </InputContainer>
       <Button type="submit">Create My Account</Button>
       <div className={styles.formText}>

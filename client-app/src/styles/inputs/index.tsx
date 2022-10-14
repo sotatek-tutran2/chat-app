@@ -29,3 +29,8 @@ export const InputLabel = styled.label`
   margin: 4px 0;
   cursor: pointer;
 `;
+
+export const InputError = styled.span`
+  font-size: 14px;
+  color: red;
+`;

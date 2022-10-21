@@ -1,7 +1,11 @@
-import React from "react";
+import { ConversationPannelContainer } from "../../styles";
 
 const ConversationPanel = () => {
-  return <div>ConversationPanel</div>;
+  return (
+    <ConversationPannelContainer>
+      <h1>ConversationPanel</h1>
+    </ConversationPannelContainer>
+  );
 };
 
 export default ConversationPanel;

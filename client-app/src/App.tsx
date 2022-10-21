@@ -10,7 +10,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/conversations" element={<Conversations />}>
-        <Route path="channel/:id" element={<ConversationChannel />} />
+        <Route path=":id" element={<ConversationChannel />} />
       </Route>
     </Routes>
   );

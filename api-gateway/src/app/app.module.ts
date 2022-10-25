@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from 'src/auth/auth.module';
+import { UsersModule } from 'src/users/users.module';
 // import { EventsModule } from '../events/events.module';
 
 @Module({
@@ -9,6 +10,7 @@ import { AuthModule } from 'src/auth/auth.module';
       envFilePath: '.env.development',
     }),
     AuthModule,
+    UsersModule,
     // EventsModule,
   ],
 })

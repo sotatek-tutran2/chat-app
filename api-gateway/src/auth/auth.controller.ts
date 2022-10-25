@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Inject,
+  Post,
+} from '@nestjs/common';
+import { instanceToPlain } from 'class-transformer';
 import { IUsersService } from 'src/users/interfaces/users-service.interface';
 import { CONTROLLER_PREFIX, SERVICE_NAMES } from '../utils';
 import { CreateUserDto } from './dto/CreateUser.dto';
@@ -12,9 +21,16 @@ export class AuthController {
   ) {}
 
   @Post('register')
-  register(@Body() createUserDto: CreateUserDto) {
-    this.usersService.createUser(createUserDto);
-    return createUserDto;
+  async register(@Body() createUserDto: CreateUserDto) {
+    const newCreatedUser = await this.usersService.createUser(createUserDto);
+
+    if (!newCreatedUser) {
+      throw new HttpException(
+        'User already exists with this e-mail',
+        HttpStatus.CONFLICT,
+      );
+    }
+    return instanceToPlain(newCreatedUser);
   }
 
   @Post('login')

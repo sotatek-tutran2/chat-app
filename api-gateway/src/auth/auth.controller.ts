@@ -10,7 +10,7 @@ import {
 import { instanceToPlain } from 'class-transformer';
 import { IUsersService } from 'src/users/interfaces/users-service.interface';
 import { CONTROLLER_PREFIX, SERVICE_NAMES } from '../utils';
-import { CreateUserDto } from './dto/CreateUser.dto';
+import { AuthUserDto, CreateUserDto } from './dto';
 import { IAuthService } from './interfaces/auth-service.interface';
 
 @Controller(CONTROLLER_PREFIX.AUTH)
@@ -34,8 +34,9 @@ export class AuthController {
   }
 
   @Post('login')
-  login() {
-    return 'register';
+  login(@Body() authUserDto: AuthUserDto) {
+    console.log(authUserDto);
+    return 'login';
   }
 
   @Get()

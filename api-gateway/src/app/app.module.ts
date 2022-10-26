@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
 import entities from 'src/typeorm';
@@ -10,6 +11,9 @@ import { UsersModule } from 'src/users/users.module';
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env.development',
+    }),
+    PassportModule.register({
+      session: true,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',

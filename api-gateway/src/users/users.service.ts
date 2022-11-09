@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/typeorm';
-import { CreateUserParams, hashPassword } from 'src/utils';
+import { CreateUserParams, FindUserParams, hashPassword } from 'src/utils';
 import { Repository } from 'typeorm';
 import { IUsersService } from './interfaces/users-service.interface';
 
@@ -25,5 +25,8 @@ export class UsersService implements IUsersService {
       password: password,
     });
     return this.usersRepository.save(newUser);
+  }
+  async findUser(findUserParams: FindUserParams) {
+    return this.usersRepository.findOneBy(findUserParams);
   }
 }

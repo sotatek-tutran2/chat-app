@@ -1,3 +1,5 @@
+import { UserCredentialParams } from 'src/utils';
+
 export interface IAuthService {
-  validateUser();
+  validateUser(userCredentials: UserCredentialParams);
 }

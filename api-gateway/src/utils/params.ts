@@ -4,3 +4,13 @@ export type CreateUserParams = {
   firstName: string;
   lastName: string;
 };
+
+export type UserCredentialParams = {
+  email: string;
+  password: string;
+};
+
+export type FindUserParams = Partial<{
+  id: number;
+  email: string;
+}>;

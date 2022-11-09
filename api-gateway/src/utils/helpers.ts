@@ -9,3 +9,10 @@ export async function hashPassword(rawPassword: string) {
 
   return hash;
 }
+
+export async function compareHash(
+  rawPassword: string,
+  hashedPassword: string,
+): Promise<boolean> {
+  return bcrypt.compare(rawPassword, hashedPassword);
+}

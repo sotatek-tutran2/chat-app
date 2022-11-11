@@ -38,7 +38,6 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Body() authUserDto: AuthUserDto) {
-    console.log(authUserDto);
     return 'login';
   }
 

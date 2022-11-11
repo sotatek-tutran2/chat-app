@@ -11,7 +11,7 @@ export class UsersService implements IUsersService {
     @InjectRepository(User) private usersRepository: Repository<User>,
   ) {}
   async createUser(userParams: CreateUserParams) {
-    const findUser = await this.usersRepository.findOneBy({
+    const findUser = await this.usersRepository.findOne({
       email: userParams.email,
     });
 
@@ -27,6 +27,6 @@ export class UsersService implements IUsersService {
     return this.usersRepository.save(newUser);
   }
   async findUser(findUserParams: FindUserParams) {
-    return this.usersRepository.findOneBy(findUserParams);
+    return this.usersRepository.findOne(findUserParams);
   }
 }

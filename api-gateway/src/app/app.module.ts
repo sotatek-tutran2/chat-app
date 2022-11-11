@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
-import entities from 'src/typeorm';
+import { entities } from 'src/typeorm';
 import { UsersModule } from 'src/users/users.module';
 // import { EventsModule } from '../events/events.module';
 
@@ -29,5 +29,6 @@ import { UsersModule } from 'src/users/users.module';
     UsersModule,
     // EventsModule,
   ],
+  providers: [],
 })
 export class AppModule {}

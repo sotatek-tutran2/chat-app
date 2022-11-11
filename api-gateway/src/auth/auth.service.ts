@@ -8,11 +8,11 @@ export class AuthService implements IAuthService {
   constructor(
     @Inject(SERVICE_NAMES.USERS_SERVICE) private usersService: IUsersService,
   ) {}
+
   async validateUser(userCredentialParams: UserCredentialParams) {
     const user = await this.usersService.findUser({
       email: userCredentialParams.email,
     });
-    console.log(user);
     if (!user)
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     const isValid = await compareHash(

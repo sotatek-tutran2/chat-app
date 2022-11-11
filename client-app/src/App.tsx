@@ -3,10 +3,12 @@ import Register from "./pages/authentication/Register";
 import Login from "./pages/authentication/Login";
 import Conversations from "./pages/conversations";
 import ConversationChannel from "./pages/ConversationChannel";
+import HomePage from "./pages/home";
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/conversations" element={<Conversations />}>

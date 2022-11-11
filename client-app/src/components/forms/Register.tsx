@@ -8,16 +8,24 @@ import {
 } from "../../styles";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { registerUserRequest } from "../../utils";
+import { IRegisterFormData } from "../../interfaces";
 
 const RegisterForm = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm<IRegisterFormData>();
 
-  const onSubmit = (values: any) => {
-    console.log(values);
+  const onSubmit = (values: IRegisterFormData) => {
+    registerUserRequest(values)
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

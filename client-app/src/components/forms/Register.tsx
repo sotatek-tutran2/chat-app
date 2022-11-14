@@ -6,10 +6,11 @@ import {
   InputField,
   InputLabel,
 } from "../../styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { registerUserRequest } from "../../utils";
 import { IRegisterFormData } from "../../interfaces";
+import { useState } from "react";
 
 const RegisterForm = () => {
   const {
@@ -17,14 +18,20 @@ const RegisterForm = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<IRegisterFormData>();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit = (values: IRegisterFormData) => {
+    setIsProcessing(true);
     registerUserRequest(values)
       .then(({ data }) => {
         console.log(data);
+        setIsProcessing(false);
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
+        setIsProcessing(false);
       });
   };
 
@@ -94,7 +101,9 @@ const RegisterForm = () => {
           <InputError>{errors?.password.message}</InputError>
         )}
       </InputContainer>
-      <Button type="submit">Create My Account</Button>
+      <Button type="submit" disabled={isProcessing}>
+        Create My Account
+      </Button>
       <div className={styles.formText}>
         <span>Already have an account? </span>
         <Link to={"/login"}>Login</Link>

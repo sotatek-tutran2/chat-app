@@ -5,11 +5,11 @@ const HomePage = () => {
   return (
     <div>
       <Link to={"/login"}>Login</Link>
-      <br />
+      <br /> <br />
       <Link to={"/register"}>Register</Link>
-      <br />
+      <br /> <br />
       <Link to={"/conversations"}>Conversations</Link>
-      <br />
+      <br /> <br />
       <Link to={"/conversations/1"}>Conversation detail</Link>
     </div>
   );

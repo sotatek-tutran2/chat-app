@@ -4,3 +4,8 @@ export interface IRegisterFormData {
   lastName: string;
   password: string;
 }
+
+export interface ILoginFormData {
+  email: string;
+  password: string;
+}

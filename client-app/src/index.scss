@@ -19,3 +19,8 @@ code {
 #root {
   height: 100vh;
 }
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.7;
+}

@@ -4,6 +4,8 @@ import Login from "./pages/authentication/Login";
 import Conversations from "./pages/conversations";
 import ConversationChannel from "./pages/ConversationChannel";
 import HomePage from "./pages/home";
+import useAuth from "./hooks/useAuth";
+import { FC, ReactElement } from "react";
 
 function App() {
   return (
@@ -17,5 +19,15 @@ function App() {
     </Routes>
   );
 }
+
+const RequiredAuth: FC<{ children: ReactElement }> = ({ children }) => {
+  const { user } = useAuth();
+
+  if (user) {
+    return children;
+  }
+
+  return "Please login";
+};
 
 export default App;

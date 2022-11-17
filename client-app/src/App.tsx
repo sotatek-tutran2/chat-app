@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Register from "./pages/authentication/Register";
 import Login from "./pages/authentication/Login";
 import Conversations from "./pages/conversations";
@@ -13,21 +13,29 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/conversations" element={<Conversations />}>
+      <Route
+        path="/conversations"
+        element={
+          <RequiredAuth>
+            <Conversations />
+          </RequiredAuth>
+        }
+      >
         <Route path=":id" element={<ConversationChannel />} />
       </Route>
     </Routes>
   );
 }
 
-const RequiredAuth: FC<{ children: ReactElement }> = ({ children }) => {
-  const { user } = useAuth();
+export const RequiredAuth: FC<{ children: ReactElement }> = ({ children }) => {
+  const { user, isLoading } = useAuth();
+  const location = useLocation();
 
-  if (user) {
-    return children;
+  if (!user && !isLoading) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
-  return "Please login";
+  return children;
 };
 
 export default App;

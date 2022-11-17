@@ -1,4 +1,4 @@
-import { IRegisterFormData, ILoginFormData } from "../interfaces";
+import { IRegisterFormData, ILoginFormData, User } from "../interfaces";
 import { axiosInstane, config } from "./api.utils";
 
 const registerUserRequest = (registerFormData: IRegisterFormData) =>
@@ -17,6 +17,6 @@ const loginUserRequest = (loginFormData: ILoginFormData) =>
     },
   });
 
-const getAuthUserRequest = () => axiosInstane.get("/auth/status", config);
+const getAuthUserRequest = () => axiosInstane.get<User>("/auth/status", config);
 
 export { registerUserRequest, loginUserRequest, getAuthUserRequest };

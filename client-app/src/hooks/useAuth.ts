@@ -1,20 +1,29 @@
 import { useEffect, useState } from "react";
+import { User } from "../interfaces";
 import { getAuthUserRequest } from "../utils";
 
 const useAuth = () => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<User | undefined>();
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  function onFetchUserInfo() {
+    setIsLoading(true);
     getAuthUserRequest()
       .then(({ data }) => {
-        console.log(data);
+        setUser(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false);
       });
+  }
+
+  useEffect(() => {
+    onFetchUserInfo();
   }, []);
 
-  return { user };
+  return { user, isLoading };
 };
 
 export default useAuth;

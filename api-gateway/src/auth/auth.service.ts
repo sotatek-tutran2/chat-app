@@ -19,6 +19,6 @@ export class AuthService implements IAuthService {
       userCredentialParams.password,
       user.password,
     );
-    return isValid;
+    return isValid ? user : null;
   }
 }

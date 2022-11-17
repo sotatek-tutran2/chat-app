@@ -6,14 +6,17 @@ import {
   HttpStatus,
   Inject,
   Post,
+  Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import { instanceToPlain } from 'class-transformer';
+import { Request, Response } from 'express';
 import { IUsersService } from 'src/users/interfaces/users-service.interface';
 import { CONTROLLER_PREFIX, SERVICE_NAMES } from '../utils';
-import { AuthUserDto, CreateUserDto } from './dto';
+import { CreateUserDto } from './dto';
 import { IAuthService } from './interfaces/auth-service.interface';
-import { LocalAuthGuard } from './passport/Guards';
+import { LocalAuthGuard, AuthenticatedGuard } from './passport/Guards';
 
 @Controller(CONTROLLER_PREFIX.AUTH)
 export class AuthController {
@@ -37,13 +40,14 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  login(@Body() authUserDto: AuthUserDto) {
-    return 'login';
+  login() {
+    console.log('login');
   }
 
-  @Get()
-  status() {
-    return 'register';
+  @UseGuards(AuthenticatedGuard)
+  @Get('status')
+  status(@Req() req: Request) {
+    return instanceToPlain(req.user);
   }
 
   @Post('logout')

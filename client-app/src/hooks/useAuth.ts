@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { User } from "../interfaces";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext, AuthContextType } from "../context";
 import { getAuthUserRequest } from "../utils";
 
 const useAuth = () => {
-  const [user, setUser] = useState<User | undefined>();
   const [isLoading, setIsLoading] = useState(true);
   const controller = new AbortController();
+  const { user, setUser } = useContext<AuthContextType>(AuthContext);
 
   function onFetchUserInfo() {
     setIsLoading(true);

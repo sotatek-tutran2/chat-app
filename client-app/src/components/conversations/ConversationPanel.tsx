@@ -1,13 +1,14 @@
-import useAuth from "../../hooks/useAuth";
+import { useContext } from "react";
+import { AuthContext, AuthContextType } from "../../context";
 import { ConversationPannelContainer } from "../../styles";
 
 const ConversationPanel = () => {
-  const { user } = useAuth();
+  const { user } = useContext<AuthContextType>(AuthContext);
   console.log(user);
 
   return (
     <ConversationPannelContainer>
-      <h1>ConversationPanel</h1>
+      <h1>ConversationPanel {user?.email}</h1>
     </ConversationPannelContainer>
   );
 };

@@ -6,24 +6,27 @@ import ConversationChannel from "./pages/ConversationChannel";
 import HomePage from "./pages/home";
 import useAuth from "./hooks/useAuth";
 import { FC, ReactElement } from "react";
+import { AuthCtxProvider } from "./context";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route
-        path="/conversations"
-        element={
-          <RequiredAuthRoute>
-            <Conversations />
-          </RequiredAuthRoute>
-        }
-      >
-        <Route path=":id" element={<ConversationChannel />} />
-      </Route>
-    </Routes>
+    <AuthCtxProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/conversations"
+          element={
+            <RequiredAuthRoute>
+              <Conversations />
+            </RequiredAuthRoute>
+          }
+        >
+          <Route path=":id" element={<ConversationChannel />} />
+        </Route>
+      </Routes>
+    </AuthCtxProvider>
   );
 }
 

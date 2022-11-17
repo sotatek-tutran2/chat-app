@@ -16,9 +16,9 @@ function App() {
       <Route
         path="/conversations"
         element={
-          <RequiredAuth>
+          <RequiredAuthRoute>
             <Conversations />
-          </RequiredAuth>
+          </RequiredAuthRoute>
         }
       >
         <Route path=":id" element={<ConversationChannel />} />
@@ -27,7 +27,9 @@ function App() {
   );
 }
 
-export const RequiredAuth: FC<{ children: ReactElement }> = ({ children }) => {
+export const RequiredAuthRoute: FC<{ children: ReactElement }> = ({
+  children,
+}) => {
   const { user, isLoading } = useAuth();
   const location = useLocation();
 

@@ -5,6 +5,7 @@ import { getAuthUserRequest } from "../utils";
 const useAuth = () => {
   const [user, setUser] = useState<User | undefined>();
   const [isLoading, setIsLoading] = useState(true);
+  const controller = new AbortController();
 
   function onFetchUserInfo() {
     setIsLoading(true);
@@ -21,6 +22,10 @@ const useAuth = () => {
 
   useEffect(() => {
     onFetchUserInfo();
+    return () => {
+      controller.abort();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { user, isLoading };

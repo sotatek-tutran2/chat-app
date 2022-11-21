@@ -8,7 +8,7 @@ const ConversationPanel = () => {
 
   return (
     <ConversationPannelContainer>
-      <h1>ConversationPanel {user?.email}</h1>
+      <h1>ConversationPanel - {user?.email}</h1>
     </ConversationPannelContainer>
   );
 };

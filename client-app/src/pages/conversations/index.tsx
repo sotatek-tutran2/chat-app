@@ -9,7 +9,7 @@ const Conversations = () => {
 
   return (
     <Page alignItems="flex-start" justifyContent="flex-start">
-      <ConversationsSidebar conversations={mockConversations} />
+      <ConversationsSidebar conversations={[]} />
       {!id && <ConversationPanel />}
       <Outlet />
     </Page>

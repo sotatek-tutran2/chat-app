@@ -3,3 +3,11 @@ export type PageProps = Partial<{
   justifyContent: string;
   alignItems: string;
 }>;
+
+export type OverlayProps = {
+  show?: boolean;
+};
+
+export type ModalProps = {
+  show?: boolean;
+};

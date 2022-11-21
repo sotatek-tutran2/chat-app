@@ -1,4 +1,4 @@
-import { TbEdit } from "react-icons/tb";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IConversation } from "../../interfaces";
 import {
@@ -7,16 +7,23 @@ import {
   ConversationsSidebar,
   ConversationsSidebarHeader,
 } from "../../styles";
+import ConversationCreateButton from "./ConversationCreateButton";
 import styles from "./index.module.scss";
 
 const Sidebar = ({ conversations }: { conversations: IConversation[] }) => {
   const navigate = useNavigate();
+  const [showCreateConversation, setShowCreateConversation] = useState(false);
 
   return (
     <ConversationsSidebar>
       <ConversationsSidebarHeader>
         <h1>Conversations</h1>
-        <TbEdit size={32} />
+        <ConversationCreateButton
+          isShow={showCreateConversation}
+          toggleModal={() => {
+            setShowCreateConversation((prevState) => !prevState);
+          }}
+        />
       </ConversationsSidebarHeader>
       <ConversationSidebarContainer>
         {conversations.map(({ id, name, lastMessage }) => (

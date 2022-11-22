@@ -14,5 +14,4 @@ export const OverlayContainer = styled.div<OverlayProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 `;

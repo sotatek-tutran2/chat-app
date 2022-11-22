@@ -16,3 +16,8 @@ export type User = {
   firstName: string;
   lastName: string;
 };
+
+export interface ICreateConversationFormData {
+  recipient: string;
+  message?: string;
+}

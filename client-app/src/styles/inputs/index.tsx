@@ -13,6 +13,19 @@ export const InputField = styled.input`
   padding: 0;
 `;
 
+export const InputAreaField = styled.textarea`
+  background: inherit;
+  outline: none;
+  border: none;
+  color: white;
+  font-family: "Inter";
+  font-size: 18px;
+  width: 100% !important;
+  padding: 0;
+  resize: vertical;
+  padding-right: 8px;
+`;
+
 export const InputContainer = styled.div`
   background-color: ${DARK_COLOR};
   padding: 12px 16px;

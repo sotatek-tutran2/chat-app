@@ -1,19 +1,20 @@
+import { useState, Fragment } from "react";
 import { TbEdit } from "react-icons/tb";
-import { OverlayContainer } from "../../styles";
+import CreateConversationModal from "./CreateConversationModal";
 
-type IProps = {
-  isShow: boolean;
-  toggleModal: () => void;
-};
+const ConversationCreateButton = () => {
+  const [isShow, setIsShow] = useState(false);
 
-const ConversationCreateButton = (props: IProps) => {
   return (
-    <>
-      <TbEdit size={32} onClick={props.toggleModal} />
-      <OverlayContainer show={props.isShow} onClick={props.toggleModal}>
-        ahahaha
-      </OverlayContainer>
-    </>
+    <Fragment>
+      <TbEdit size={32} onClick={() => setIsShow(true)} />
+      <CreateConversationModal
+        show={isShow}
+        onHide={() => {
+          setIsShow(false);
+        }}
+      />
+    </Fragment>
   );
 };
 

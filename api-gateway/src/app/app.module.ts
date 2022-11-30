@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from 'src/auth/auth.module';
-import { entities } from 'src/typeorm';
-import { UsersModule } from 'src/users/users.module';
+import { AuthModule } from '../auth/auth.module';
+import { ConversationsModule } from '../conversations/conversations.module';
+import { entities } from '../typeorm';
+import { UsersModule } from '../users/users.module';
 // import { EventsModule } from '../events/events.module';
 
 @Module({
@@ -27,6 +28,7 @@ import { UsersModule } from 'src/users/users.module';
     }),
     AuthModule,
     UsersModule,
+    ConversationsModule,
     // EventsModule,
   ],
   providers: [],

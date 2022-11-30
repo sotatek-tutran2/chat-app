@@ -41,7 +41,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login() {
-    console.log('login');
+    console.log('logged in');
   }
 
   @UseGuards(AuthenticatedGuard)

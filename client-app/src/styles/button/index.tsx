@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Button = styled.button`
   width: 100%;
   color: #fff;
-  background-color: #2b09ff;
+  background-color: teal;
   outline: none;
   border: none;
   cursor: pointer;
@@ -13,14 +13,14 @@ export const Button = styled.button`
   margin-bottom: 1.5rem;
   font-weight: 600;
   transition: 250ms background-color ease;
-  border: 2px solid #2b09ff;
+  border: 2px solid teal;
   &:hover {
-    background-color: #3415ff;
+    background-color: #0a7070;
   }
   &:active {
-    background-color: #3415ff;
+    background-color: #0a7070;
   }
   &:focus {
-    background-color: #3415ff;
+    background-color: #0a7070;
   }
 `;

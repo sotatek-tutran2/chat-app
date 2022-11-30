@@ -1,4 +1,11 @@
-import { Fragment } from "react";
+import {
+  createRef,
+  Dispatch,
+  Fragment,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+} from "react";
 import { OverlayContainer } from "../../styles";
 import { ModalBodyStyle } from "../../styles/ui/modal";
 import CreateConversationForm from "../forms/CreateConversation";
@@ -8,18 +15,37 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const CreateConversationModal = ({
   show,
-  onHide,
+  setIsShow,
 }: {
   show: boolean;
-  onHide: () => void;
+  setIsShow: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const ref = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsShow(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onClickOverlay = (e: MouseEvent<HTMLDivElement>) => {
+    if (ref.current === e.target) {
+      setIsShow(false);
+    }
+  };
+
   return (
-    <OverlayContainer show={show}>
+    <OverlayContainer show={show} ref={ref} onClick={onClickOverlay}>
       <ModalContainer show={show}>
         <Fragment>
           <ModalHeader>
             <h1>Create a New Conversation</h1>
-            <AiOutlineCloseCircle size={22} onClick={onHide} />
+            <AiOutlineCloseCircle size={24} onClick={() => setIsShow(false)} />
           </ModalHeader>
           <ModalBodyStyle>
             <CreateConversationForm />

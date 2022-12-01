@@ -52,6 +52,6 @@ export class AuthController {
 
   @Post('logout')
   logout() {
-    return 'register';
+    return 'logout';
   }
 }

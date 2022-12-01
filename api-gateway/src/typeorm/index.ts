@@ -1,8 +1,9 @@
 // import { DataSource } from 'typeorm';
 import { User } from './entities/user.entity';
 import { Session } from './entities/session.entity';
-
-const entities = [User, Session];
+import { Conversation } from './entities/conversation.entity';
+import { Participant } from './entities/Participant.entity';
+const entities = [User, Session, Conversation, Participant];
 
 // export const AppDataSource = new DataSource({
 //   type: 'mysql',
@@ -15,4 +16,4 @@ const entities = [User, Session];
 //   synchronize: true,
 // });
 
-export { User, Session, entities };
+export { User, Session, entities, Conversation, Participant };

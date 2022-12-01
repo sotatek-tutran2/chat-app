@@ -3,6 +3,8 @@ import { AuthenticatedGuard } from 'src/auth/passport/Guards';
 import { CONTROLLER_PREFIX, SERVICE_NAMES } from 'src/utils';
 import { CreateConversationDto } from './dto';
 import { IConversationsService } from './interfaces';
+import { AuthUser } from 'src/utils/decorators';
+import { User } from 'src/typeorm';
 
 @Controller(CONTROLLER_PREFIX.CONVERSATIONS)
 @UseGuards(AuthenticatedGuard)
@@ -13,7 +15,10 @@ export class ConversationsController {
   ) {}
 
   @Post()
-  createConversation(@Body() createConversationDto: CreateConversationDto) {
-    this.conversationsService.createConversation(createConversationDto);
+  createConversation(
+    @AuthUser() user: User,
+    @Body() createConversationDto: CreateConversationDto,
+  ) {
+    this.conversationsService.createConversation(user, createConversationDto);
   }
 }
